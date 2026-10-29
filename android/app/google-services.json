@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "392302440974",
+    "project_id": "apartmentsurveyapp-fe4ce",
+    "storage_bucket": "apartmentsurveyapp-fe4ce.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:392302440974:android:b176231f725c9cc59bc25f",
+        "android_client_info": {
+          "package_name": "com.example.apartment_survey_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMY8Icq_97BwclVf0O-o5vkEtr6iqgDiE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

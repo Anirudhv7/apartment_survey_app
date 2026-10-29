@@ -1,0 +1,11 @@
+// EMULATOR ONLY: loaded by firebase.emulators.json, never firebase.json.
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Support the no-auth apartment workflow using synthetic data locally.
+    match /apartments/{apartmentId} {
+      allow read, write: if true;
+    }
+    // Other collections are denied by default.
+  }
+}

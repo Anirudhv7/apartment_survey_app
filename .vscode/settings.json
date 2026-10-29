@@ -1,0 +1,11 @@
+{
+    "dart.flutterSdkPath": "C:\\dev\\flutter",
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "[dart]": {
+        "editor.defaultFormatter": "Dart-Code.dart-code",
+        "editor.formatOnSave": true,
+        "editor.formatOnSaveMode": "file",
+        "editor.tabCompletion": "onlySnippets"
+    }
+}
