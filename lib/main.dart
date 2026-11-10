@@ -13,14 +13,12 @@ Future<void> main() async {
   runApp(MyApp(apartmentServices: ApartmentServices(firestore: firestore)));
 }
 
-/// Configure Firestore before constructing any services or starting listeners.
 Future<FirebaseFirestore> initializeFirestore() async {
   const useEmulator = bool.fromEnvironment(
     'USE_FIRESTORE_EMULATOR',
     defaultValue: true,
   );
   if (kDebugMode && useEmulator) {
-    // A named demo app keeps the native production default app out of this path.
     final app = await Firebase.initializeApp(
       demoProjectId: 'demo-apartment-survey',
     );

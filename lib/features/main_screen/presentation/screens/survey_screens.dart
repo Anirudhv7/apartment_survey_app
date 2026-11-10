@@ -4,8 +4,9 @@ import 'package:apartment_survey_app/features/main_screen/presentation/widgets/d
 import 'package:apartment_survey_app/features/main_screen/presentation/widgets/dd_survey_response_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:apartment_survey_app/features/main_screen/application/apartment/apartment.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
-class SurveyScreen extends StatefulWidget {
+class SurveyScreen extends StatefulHookWidget {
   const SurveyScreen({super.key, this.apartmentServices});
 
   final ApartmentServices? apartmentServices;
@@ -16,8 +17,8 @@ class SurveyScreen extends StatefulWidget {
 
 class _SurveyScreenState extends State<SurveyScreen> {
   late final ApartmentServices apartmentServices;
-  String selectedFilter = "all";
-  String selectedBlock = "all";
+  // String selectedFilter = "all";
+  // String selectedBlock = "all";
   late final Stream<List<Apartment>> apartmentsStream;
   @override
   void initState() {
@@ -28,6 +29,8 @@ class _SurveyScreenState extends State<SurveyScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final ValueNotifier<String> selectedFilter = useState("all");
+    final ValueNotifier<String> selectedBlock = useState("all");
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -37,19 +40,18 @@ class _SurveyScreenState extends State<SurveyScreen> {
         body: Column(
           children: [
             DropDownSurveyResponse(
-              selectedFilter: selectedFilter,
+              selectedFilter: selectedFilter.value,
               onFilterChanged: (newValue) {
-                setState(() {
-                  selectedFilter = newValue;
-                });
+                selectedFilter.value = newValue;
+                // setState(() {
+                //   selectedFilter = newValue;
+                // });
               },
             ),
             DropDownBlocks(
-              selectedBlock: selectedBlock,
+              selectedBlock: selectedBlock.value,
               onBlockChanged: (newValue) {
-                setState(() {
-                  selectedBlock = newValue;
-                });
+                selectedBlock.value = newValue;
               },
             ),
             Expanded(
@@ -79,18 +81,18 @@ class _SurveyScreenState extends State<SurveyScreen> {
                       child: Text("No Apartments Yet."),
                     );
                   }
-                  if (selectedFilter == "all") {
+                  if (selectedFilter.value == "all") {
                     filteredApartments = firestoreApartments;
                   } else {
                     filteredApartments = firestoreApartments.where((apartment) {
-                      return apartment.status == selectedFilter;
+                      return apartment.status == selectedFilter.value;
                     }).toList();
                   }
                   if (selectedBlock != "all") {
                     filteredApartments = filteredApartments.where((
                       apartment,
                     ) {
-                      return apartment.block == selectedBlock;
+                      return apartment.block == selectedBlock.value;
                     }).toList();
                   }
 
